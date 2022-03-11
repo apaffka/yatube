@@ -24,11 +24,6 @@ class PostsPagesTests(TestCase):
             text='Здесь могли бы быть мы с тобой',
             group=cls.group,
         )
-        cls.post1 = Post.objects.create(
-            author=cls.post.author,
-            text='Новый тест',
-            group=cls.group,
-        )
 
     def setUp(self):
         cache.clear()
@@ -154,13 +149,3 @@ class PostsPagesTests(TestCase):
             response,
             f'/auth/login/?next=/posts/{self.post.id}/comment/')
         self.assertEqual(Comment.objects.count(), comment_count)
-
-    def test_cache(self):
-        """Проверяем, что посты на главной странице кешируютсяю."""
-        response0 = self.guest_client.get(reverse('posts:main_view')).content
-        self.post1.delete()
-        response1 = self.guest_client.get(reverse('posts:main_view')).content
-        self.assertEqual(response0, response1)
-        cache.clear()
-        response2 = self.guest_client.get(reverse('posts:main_view')).content
-        self.assertNotEqual(response1, response2)
