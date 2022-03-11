@@ -40,7 +40,8 @@ class FollowTests(TestCase):
         """Проверяем, что поста нет в подписках, если не фоловер."""
         response = self.site_auth_user.get(reverse('posts:follow_index'))
         expect = Follow.objects.filter(user=self.logined_user1)
-        self.assertFalse(response.context['post_list'], expect)
+        obj = response.context['page_obj'].object_list
+        self.assertFalse(obj, expect)
 
     def test_auth_user_can_follow(self):
         """Проверяем, что авторизованный пользователь может подписаться."""
