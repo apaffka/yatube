@@ -6,3 +6,4 @@ class ViewTestClass(TestCase):
         response = self.client.get('/nonexist-page/')
         self.assertEqual(response.status_code, 404)
         self.assertTemplateUsed(response, 'core/404.html')
+        

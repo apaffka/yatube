@@ -23,7 +23,7 @@ class TaskCreateFormTests(TestCase):
             author=User.objects.create_user(username='Misha'),
             text='Здесь могли бы быть мы с тобой',
             group=cls.group,
-            )
+        )
 
         cls.post_count = Post.objects.count()
 

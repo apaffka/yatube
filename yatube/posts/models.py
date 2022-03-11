@@ -71,6 +71,7 @@ class Comment(models.Model):
         related_name='comments',
     )
 
+
 class Follow(models.Model):
     user = models.ForeignKey(
         User,
