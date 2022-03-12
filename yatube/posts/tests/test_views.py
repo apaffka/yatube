@@ -1,12 +1,8 @@
-from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
+from ..models import Post, Group, User, Comment
 from django.urls import reverse
 from django import forms
 from django.core.cache import cache
-
-from ..models import Post, Group, Comment
-
-User = get_user_model()
 
 
 class PostsPagesTests(TestCase):

@@ -1,10 +1,6 @@
-from django.contrib.auth import get_user_model
 from django.test import TestCase, Client
+from ..models import Post, Group, User
 from django.core.cache import cache
-
-from ..models import Post, Group
-
-User = get_user_model()
 
 
 class StaticURLTests(TestCase):

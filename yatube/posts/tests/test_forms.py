@@ -1,10 +1,7 @@
-from django.contrib.auth import get_user_model
-from ..models import Post, Group
 from django.test import Client, TestCase
+from ..models import Post, Group, User
 from django.urls import reverse
 from django.core.cache import cache
-
-User = get_user_model()
 
 
 class TaskCreateFormTests(TestCase):

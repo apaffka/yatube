@@ -107,7 +107,6 @@ def post_create(request):
 @login_required
 def post_edit(request, post_id):
     template = 'posts/create_post.html'
-    is_edit = True
     post = get_object_or_404(Post, id=post_id)
     if request.user.username == post.author.username:
         form = PostForm(instance=post)
@@ -123,7 +122,7 @@ def post_edit(request, post_id):
             return redirect('posts:post_detail', post_id=post.id)
         context = {
             'form': form,
-            'is_edit': is_edit,
+            'is_edit': False,
         }
         return render(request, template, context)
     else:
@@ -168,7 +167,7 @@ def profile_unfollow(request, username):
         'author': author,
     }
     if request.user != author:
-        person = Follow.objects.get(user=request.user, author=author)
+        person = get_object_or_404(Follow, user=request.user, author=author)
         person.delete()
         return redirect('posts:profile', author)
     return render(request, template, context)

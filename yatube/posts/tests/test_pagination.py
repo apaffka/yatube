@@ -1,11 +1,10 @@
-from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
-from django.urls import reverse
+from ..models import Post, Group, User
 from ..views import POSTS_PER_PAGE
-from ..models import Post, Group
+from django.urls import reverse
 from django.core.cache import cache
 
-User = get_user_model()
+
 PAGES_FOR_TEST = POSTS_PER_PAGE + 5
 
 
